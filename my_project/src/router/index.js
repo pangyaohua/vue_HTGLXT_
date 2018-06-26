@@ -16,6 +16,7 @@ export default new Router({
 			name: "",
 			component: Detail,
 			children: [
+				{ path: '/', name: "产品介绍", component: Detail.productDetail },
 				{ path: 'productDetail', name: "产品介绍", component: Detail.productDetail },
 				{ path: 'productList', name: "产品列表", component: Detail.productList },
 				{ path: 'productAbout', name: "关于我们", component: Detail.productAbout }

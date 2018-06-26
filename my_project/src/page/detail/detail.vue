@@ -4,15 +4,15 @@
 
 		<div class="content">
 			<router-link to="/detail/productDetail">
-				<span>产品介绍</span>
+				<span v-bind:class="{active:productDetailIsActive}" @click="productDetailChange">产品介绍</span>
 			</router-link>
 
 			<router-link to="/detail/productList">
-				<span>产品列表</span>
+				<span v-bind:class="{active:productListIsActive}" @click="productListChange">产品列表</span>
 			</router-link>
 
 			<router-link to="/detail/productAbout">
-				<span>联系我们</span>
+				<span v-bind:class="{active:productAboutIsActive}" @click="productAboutChange">联系我们</span>
 			</router-link>
 
 		</div>
@@ -23,7 +23,40 @@
 	export default {
 		data() {
 			return {
-				"msg": "XX产品官网介绍"
+				"msg": "XX产品官网介绍",
+				"productDetailIsActive":true,
+				"productListIsActive":false,
+				"productAboutIsActive":false
+			}
+		},
+		methods:{
+			//---设置导航样式，太复杂，先熟悉，之后优化
+			productDetailChange(){
+				if(this.productDetailIsActive){
+					this.productDetailIsActive=false;
+				}else{
+					this.productDetailIsActive=true;
+					this.productListIsActive=false;
+					this.productAboutIsActive=false;
+				}
+			},
+			productListChange(){
+				if(this.productListIsActive){
+					this.productListIsActive=false;
+				}else{
+					this.productListIsActive=true;
+					this.productDetailIsActive=false;
+					this.productAboutIsActive=false;
+				}
+			},
+			productAboutChange(){
+				if(this.productAboutIsActive){
+					this.productAboutIsActive=false;
+				}else{
+					this.productAboutIsActive=true;
+					this.productDetailIsActive=false;
+					this.productListIsActive=false;
+				}
 			}
 		}
 	}
@@ -52,12 +85,20 @@
 	.content{
 		width:100%;
 		display:-webkit-flex;
-		padding:15px 0;
 		background:skyblue;
 		color:#fff;
 	}
 	.content a{
 		-webkit-flex:1;
 		color:#fff!important;
+	}
+	.content a span{
+		display:inline-block;
+		padding:15px 10px;
+	}
+	.active{
+		background:blueviolet;
+		display:inline-block;
+		color:fff;
 	}
 </style>
