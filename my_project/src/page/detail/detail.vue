@@ -24,7 +24,7 @@
 		data() {
 			return {
 				"msg": "XX产品官网介绍",
-				"productDetailIsActive":true,
+				"productDetailIsActive":false,
 				"productListIsActive":false,
 				"productAboutIsActive":false
 			}
@@ -97,7 +97,7 @@
 		padding:15px 10px;
 	}
 	.active{
-		background:blueviolet;
+		background:darkslateblue;
 		display:inline-block;
 		color:fff;
 	}
