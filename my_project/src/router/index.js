@@ -19,7 +19,8 @@ export default new Router({
 				{ path: '/', name: "产品介绍", component: Detail.productDetail },
 				{ path: 'productDetail', name: "产品介绍", component: Detail.productDetail },
 				{ path: 'productList', name: "产品列表", component: Detail.productList },
-				{ path: 'productAbout', name: "关于我们", component: Detail.productAbout }
+				{ path: 'productAbout', name: "关于我们", component: Detail.productAbout },
+				{path:"myWork",name:"我的工作台",component:Detail.myWork}
 			]
 		}
 	]

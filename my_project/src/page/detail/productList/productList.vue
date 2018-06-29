@@ -1,73 +1,75 @@
 <template>
 	<div class="productList">
-		<p class="left" @click="add"><button>新加</button></p>
-		<ul>
-
-			<li v-for="(item,index) in dataList">
-				<p>{{index}}-{{item.name}}</p>
-				<span @click="edit(index)">编辑</span>
-			</li>
-		</ul>
+		
 		<!--<p class="left" @click="loadMore"><button>加载更多</button></p>-->
-		<div class="shadeBox" v-bind:class="{hidden:shadeBoxIsShow}">
-			<p>请输入要添加板块的标题</p>
-			<p>
-				<input type="text" v-model="title" placeholder="请输入您要添加的标题" />
-				<br />
-				<button v-bind:class="{hidden:isSubmit}" @click="submit">提交</button>
-				<button v-bind:class="{hidden:isEdit}" @click="save">保存编辑</button>
-			</p>
-		</div>
+		<p class="left">
+			<el-button type="primary" icon="el-icon-edit" @click="add">新加</el-button>
+		</p>
+		<el-row :gutter="20">
+			<el-col :span="6" v-for="(item,index) in dataList" :key="item.id">
+				<div class="grid-content bg-purple">
+					<p>{{index}}-{{item.name}}</p>
+					<el-button @click="edit(index)">编辑</el-button>
+				</div>
+			</el-col>
+		</el-row>
+		
+		<el-dialog title="请输入你要添加的内容" :visible.sync="dialogFormVisible">
+			<el-form>
+				<el-form-item label="内容" :label-width="formLabelWidth">
+					<el-input v-model="title" auto-complete="off"></el-input>
+				</el-form-item>
+			</el-form>
+			<div slot="footer" class="dialog-footer" style="text-align: center;">
+				<el-button @click="dialogFormVisible = false">取消</el-button>
+				<el-button type="primary" @click="editSure">确定</el-button>
+			</div>
+		</el-dialog>
+
 	</div>
 </template>
 
 <script>
 	import axios from "axios"
-	
 	export default {
 		data() {
 			return {
 				"msg": "产品列表简介",
 				"title": "",
-				"shadeBoxIsShow": true,
-				"isSubmit": false,
-				"isEdit": true,
+				"isAdd":false,
 				"editIndex": "",
 				"dataList": [
-					{ "name": "vue实例" },
-					{ "name": "模板语法" },
-					{ "name": "计算属性与和侦听器" },
-					{ "name": "class与style绑定" }
-				]
+					{ name: "vue实例",id:"a" },
+					{ name: "模板语法",id:"b"  },
+					{ name: "计算属性与和侦听器",id:"c"  },
+					{ name: "class与style绑定",id:"d"  },
+					{ name: "施蒂利克积分可适当",id:"e"  }
+				],
+				dialogFormVisible: false,
+				formLabelWidth: '120px'
 			}
 		},
 		methods: {
 			add() {
-
-				this.shadeBoxIsShow = false;
-				this.isEdit = true;
-				this.isSubmit = false;
-			},
-			submit() {
-
-				this.shadeBoxIsShow = true;
-				console.log(this.title);
-				this.dataList.push({ "name": this.title });
-				this.title = "";
-			},
-			save() {
-				this.dataList[this.editIndex].name = this.title;
-				this.shadeBoxIsShow = true;
-				this.title = "";
+				this.title="";
+				this.isAdd = true;
+				this.dialogFormVisible = true;
 			},
 			edit(val) {
+				this.title="";
+				this.isAdd=false;
+				this.dialogFormVisible = true;
 				console.log(val);
-				//--编辑标题
-				this.shadeBoxIsShow = false;
-				this.editIndex = val;
-				this.isEdit = false;
-				this.isSubmit = true;
-
+				this.editIndex=val;
+			},
+			editSure(){
+				if(this.isAdd){
+					this.dataList.push({ "name": this.title });
+					this.dialogFormVisible = false;
+					return false;
+				}
+				this.dataList[this.editIndex].name = this.title;
+				this.dialogFormVisible = false;
 			}
 			//----axios-加载更多数据----测试
 			/*loadMore() {
@@ -114,7 +116,40 @@
 		padding-left: 30px;
 	}
 	
-	ul li {
+	.el-row {
+		margin-bottom: 20px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	
+	.el-col {
+		border-radius: 4px;
+	}
+	
+	.bg-purple-dark {
+		background: #99a9bf;
+	}
+	
+	.bg-purple {
+		background: #d3dce6;
+	}
+	
+	.bg-purple-light {
+		background: #e5e9f2;
+	}
+	
+	.grid-content {
+		border-radius: 4px;
+		padding: 25px 0;
+		margin-bottom: 10px;
+	}
+	
+	.row-bg {
+		padding: 10px 0;
+		background-color: #f9fafc;
+	}
+	/*ul li {
 		list-style: none;
 		width: 23%;
 		margin-right: 1%;
@@ -141,7 +176,7 @@
 		padding: 8px 0;
 		color: skyblue;
 		cursor: pointer;
-	}
+	}*/
 	
 	.shadeBox {
 		width: 50%;

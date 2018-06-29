@@ -3,17 +3,52 @@
 		<p>{{msg}}</p>
 
 		<div class="content">
-			<router-link to="/detail/productDetail">
-				<span v-bind:class="{active:productDetailIsActive}" @click="productDetailChange">产品介绍</span>
-			</router-link>
+			<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
 
-			<router-link to="/detail/productList">
-				<span v-bind:class="{active:productListIsActive}" @click="productListChange">产品列表</span>
-			</router-link>
+				<el-menu-item index="1">
+					<router-link to="/detail/productDetail">产品介绍</router-link>
+				</el-menu-item>
 
-			<router-link to="/detail/productAbout">
-				<span v-bind:class="{active:productAboutIsActive}" @click="productAboutChange">联系我们</span>
-			</router-link>
+				<el-submenu index="2">
+					<template slot="title">我的工作台</template>
+					<el-menu-item index="2-1">
+						<router-link to="/detail/myWork" @click="this.componnet1=true">
+							组件
+						</router-link>
+					</el-menu-item>
+					<el-menu-item index="2-2">
+						<router-link to="/detail/myWork">
+							组件详情
+						</router-link>
+					</el-menu-item>
+					<el-menu-item index="2-3">
+						<router-link to="/detail/myWork">
+							element-ui
+						</router-link>
+					</el-menu-item>
+					<!--<el-submenu index="2-4">
+						<template slot="title">选项4</template>
+						<el-menu-item index="2-4-1">选项1</el-menu-item>
+						<el-menu-item index="2-4-2">选项2</el-menu-item>
+						<el-menu-item index="2-4-3">选项3</el-menu-item>
+					</el-submenu>-->
+				</el-submenu>
+
+				<el-menu-item index="3">
+					<router-link to="/detail/productList">
+						产品列表
+					</router-link>
+				</el-menu-item>
+
+				<el-menu-item index="4">
+
+					<router-link to="/detail/productAbout">
+						联系电话
+					</router-link>
+
+				</el-menu-item>
+			</el-menu>
+			<div class="line"></div>
 
 		</div>
 		<router-view></router-view>
@@ -24,39 +59,16 @@
 		data() {
 			return {
 				"msg": "XX产品官网介绍",
-				"productDetailIsActive":false,
-				"productListIsActive":false,
-				"productAboutIsActive":false
+				"activeIndex": '1',
+				"activeIndex2": '1',
+				"componnet1":false,
+				"componnet2":false,
+				"element-ui":false
 			}
 		},
-		methods:{
-			//---设置导航样式，太复杂，先熟悉，之后优化
-			productDetailChange(){
-				if(this.productDetailIsActive){
-					this.productDetailIsActive=false;
-				}else{
-					this.productDetailIsActive=true;
-					this.productListIsActive=false;
-					this.productAboutIsActive=false;
-				}
-			},
-			productListChange(){
-				if(this.productListIsActive){
-					this.productListIsActive=false;
-				}else{
-					this.productListIsActive=true;
-					this.productDetailIsActive=false;
-					this.productAboutIsActive=false;
-				}
-			},
-			productAboutChange(){
-				if(this.productAboutIsActive){
-					this.productAboutIsActive=false;
-				}else{
-					this.productAboutIsActive=true;
-					this.productDetailIsActive=false;
-					this.productListIsActive=false;
-				}
+		methods: {
+			handleSelect(key, keyPath) {
+				console.log(key, keyPath);
 			}
 		}
 	}
@@ -68,37 +80,12 @@
 		font-weight: normal;
 	}
 	
-	ul {
-		list-style-type: none;
-		padding: 0;
+	ul li {
+		width: 25%;
 	}
-	
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
-	
-	a {
-		color: #42b983;
-		display: inline-block;
-	}
-	.content{
+	ul li a{
+		display:inline-block;
 		width:100%;
-		display:-webkit-flex;
-		background:skyblue;
-		color:#fff;
-	}
-	.content a{
-		-webkit-flex:1;
-		color:#fff!important;
-	}
-	.content a span{
-		display:inline-block;
-		padding:15px 10px;
-	}
-	.active{
-		background:darkslateblue;
-		display:inline-block;
-		color:fff;
+		height:100%;
 	}
 </style>

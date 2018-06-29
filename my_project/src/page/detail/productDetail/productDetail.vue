@@ -4,11 +4,13 @@
 			{{message}}
 		</p>
 		<p class="detail_content">
-		{{detail}}
+			{{detail}}
 		</p>
 		<p class="title">
-			详情见于<a href="https://cn.vuejs.org/">https://cn.vuejs.org/</a>
+			详情见于
+			<a href="https://cn.vuejs.org/">https://cn.vuejs.org/</a>
 		</p>
+		
 	</div>
 
 </template>
@@ -27,12 +29,13 @@
 <style>
 	p.detail_content {
 		width: 100%;
-		padding:10px 20px;
+		padding: 10px 20px;
 		text-align: left;
 		line-height: 45px;
 	}
-	.title{
+	
+	.title {
 		text-align: left;
-		padding:10px 20px;
+		padding: 10px 20px;
 	}
 </style>
