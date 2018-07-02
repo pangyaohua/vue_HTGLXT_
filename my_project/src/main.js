@@ -5,11 +5,13 @@ import App from './App'
 import router from './router'
 import Element from "element-ui"
 import 'element-ui/lib/theme-chalk/index.css'
-import "./assets/bootstrap/bootstrap.css"
-import 'bootstrap/dist/js/bootstrap.min'
 import $ from "jquery"
-Vue.config.productionTip = false
+import headerNav from '@/components/header_nav'
+//全局样式表
+import indexSheet from "./assets/index.css"
 
+Vue.config.productionTip = false
+Vue.use(headerNav)
 Vue.use(Element)
 /* eslint-disable no-new */
 new Vue({
