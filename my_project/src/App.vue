@@ -1,11 +1,8 @@
 <template>
 	<div id="app">
 		
-		<ul>
-			<p>暂无登录，注册页面，headerNav </p>
-		</ul>
-		<div class="header" style="background: url(image/index/indexbackground.jpg) no-repeat;background-size:100% 100%;">
-		</div>
+		
+		
 		
 		<router-view/>
 	</div>

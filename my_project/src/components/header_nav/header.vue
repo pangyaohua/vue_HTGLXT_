@@ -72,7 +72,7 @@
 			changeIcon() {
 				$(".navbar-nav").find("li").each(function() {
 					var a = $(this).find("a:first")[0];
-					if($(a).attr("href") == window.location.hash) {
+					if($(a).attr("href").indexOf(window.location.hash) >-1 ) {
 						$(a).parent("li").addClass("active");
 					} else {
 						$(a).parent("li").removeClass("active");
@@ -89,7 +89,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	ul li {
-		width: 20%;
-	}
+	
 </style>

@@ -1,10 +1,20 @@
 <template>
-	<div>
-		<p>{{msg}}</p>
-		<input type="text" placeholder="请输入用户名" v-model="userName" />
-		<input type="password" placeholder="请输入密码" v-model="pwd" />
-		<button>注册</button>
-		<button @click="login">登录</button>
+	<div class="container">
+
+		<form class="form-signin">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<label for="userName" class="sr-only">用户名:</label>
+			<input type="text" id="userName" class="form-control" placeholder="请输入用户名"  v-model="userName" required autofocus>
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input type="password" id="inputPassword" class="form-control" v-model="pwd" placeholder="请输入密码" required>
+			<div class="checkbox text-left">
+				<label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" @click="login">Sign in</button>
+		</form>
+
 	</div>
 </template>
 
@@ -18,13 +28,13 @@
 				msg: "showTime"
 			}
 		},
-		methods:{
-			login(){
+		methods: {
+			login() {
 				alert(this.pwd);
-				if(this.userName=="" || this.pwd==""){
+				if(this.userName == "" || this.pwd == "") {
 					//---提示用户名与密码为必填项
 					alert("输入用户名与密码");
-				}else{
+				} else {
 					//--路由跳转，
 					this.$router.push('/detail')
 				}
@@ -34,5 +44,13 @@
 </script>
 
 <style>
+html,body,#app{
+	width:100%;
+	height:100%;
+	margin:0;
+}
 
+form input{
+	margin-bottom:15px;
+}
 </style>

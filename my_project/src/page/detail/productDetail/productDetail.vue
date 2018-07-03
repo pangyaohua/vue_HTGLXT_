@@ -1,16 +1,28 @@
 <template>
-	<div>
-		<p class="title">
-			{{message}}
-		</p>
-		<p class="detail_content">
-			{{detail}}
-		</p>
-		<p class="title">
-			详情见于
-			<a href="https://cn.vuejs.org/">https://cn.vuejs.org/</a>
-		</p>
-		
+	<div class="container">
+
+		<div class="row text-left">
+			<div class="col-md-12 col-xs-12">
+
+				{{message}}
+
+			</div>
+		</div>
+		<div class="row text-left">
+			<div class="col-md-12 col-xs-12">
+
+				{{detail}}
+
+			</div>
+		</div>
+		<div class="row text-left">
+			<div class="col-md-12 col-xs-12">
+
+				详情见于
+				<a href="https://cn.vuejs.org/">https://cn.vuejs.org/</a>
+			</div>
+		</div>
+
 	</div>
 
 </template>
@@ -27,15 +39,7 @@
 </script>
 
 <style>
-	p.detail_content {
-		width: 100%;
-		padding: 10px 20px;
-		text-align: left;
-		line-height: 45px;
-	}
-	
-	.title {
-		text-align: left;
-		padding: 10px 20px;
-	}
+.row{
+	padding:10px 10px;
+}
 </style>
